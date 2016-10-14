@@ -26,7 +26,15 @@ class FlyersController extends Controller
     public function store(FlyerRequest $request)
     {
         Flyer::create($request->all());
+        flash()->success("Success", "Your flyer has been created.");
 
         return redirect()->back();
+    }
+
+    public function show($zip, $street)
+    {
+        $flyer = Flyer::locatedAt($zip, $street)->first();
+
+        return view('flyers.show', compact('flyer'));
     }
 }
