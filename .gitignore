@@ -5,6 +5,6 @@
 Homestead.json
 Homestead.yaml
 .env
-.png
-.jpg
+*.png
+*.jpg
 /public/flyerassets/photos

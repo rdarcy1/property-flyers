@@ -8,6 +8,8 @@
 
     @yield('styles')
 
+    @yield('scripts.header')
+
 </head>
 <body>
 
@@ -31,11 +33,36 @@
                 <li><a href="#">Link</a></li>
             </ul>
 
-            @if (Auth::check())
-                <p class="navbar-text navbar-right">
-                    Hello, {{ Auth::user()->name }}.
-                </p>
-            @endif
+            <!-- Right side of navbar -->
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Authentication Links -->
+                @if (Auth::guest())
+                    <li><a href="{{ url('/login') }}">Login</a></li>
+                    <li><a href="{{ url('/register') }}">Register</a></li>
+                @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ url('/logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                                      style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+            </ul>
+
 
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -45,8 +72,10 @@
     @yield('content')
 </div>
 
+<!-- Scripts -->
 @yield('scripts.footer')
 <script src="/js/libs.js"></script>
+<script src="/js/app.js"></script>
 
 @include('flash')
 

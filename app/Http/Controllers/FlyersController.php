@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Traits\AuthorisesUsers;
+use App\Http\Requests\AddPhotoRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\UploadedFile;
-Use App\Http\Requests\FlyerRequest;
-Use App\Photo;
-Use App\Flyer;
+use App\Http\Requests\FlyerRequest;
+use App\Photo;
+use App\Flyer;
 
 
 class FlyersController extends Controller
@@ -42,27 +43,12 @@ class FlyersController extends Controller
         return view('flyers.show', compact('flyer'));
     }
 
-    public function addPhoto($zip, $street, Request $request)
+    public function addPhoto($zip, $street, AddPhotoRequest $request)
     {
-        $this->validate($request, [
-            'photo' => 'required|mimes:jpg,jpeg,png,bmp'
-        ]);
-
-        if (! $this->userCreatedFlyer($request)) {
-            return $this->unauthorised($request);
-        }
-
-        $photo = $this->makePhoto($request->file('photo'));
+        $photo = Photo::fromFile($request->file('photo'));
 
         Flyer::locatedAt($zip, $street)->addPhoto($photo);
 
         return 'Photo uploaded successfully.';
     }
-
-    protected function makePhoto(UploadedFile $file)
-    {
-        return $photo = Photo::named($file->getClientOriginalName())
-            ->move($file);
-    }
-
 }

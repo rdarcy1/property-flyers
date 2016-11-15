@@ -3,8 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Flyer;
+use Illuminate\Support\Facades\Auth;
 
-class ChangeFlyerRequest extends FormRequest
+class AddPhotoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +15,11 @@ class ChangeFlyerRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Flyer::where([
+            'zip' => $this->zip,
+            'street' => $this->street,
+            'user_id' => $this->user()->id
+        ])->exists();
     }
 
     /**
@@ -24,7 +30,7 @@ class ChangeFlyerRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'photo' => 'required|mimes:jpg,jpeg,png,bmp'
         ];
     }
 }

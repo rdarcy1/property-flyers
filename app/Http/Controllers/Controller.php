@@ -14,6 +14,9 @@ class Controller extends BaseController
 
     public function __construct()
     {
-
+        view()->composer('*', function ($view) {
+            $view->with('signedIn', Auth::check());
+            $view->with('user', Auth::user());
+        });
     }
 }

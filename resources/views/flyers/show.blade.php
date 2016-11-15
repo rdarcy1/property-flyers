@@ -24,18 +24,20 @@
                     @endforeach
                 </div>
             @endforeach
+
+            @if ($user && $user->owns($flyer))
+                <hr>
+                <form id="addPhotosForm"
+                      action="{{ route('store_photo_path', [$flyer->zip, $flyer->street]) }}"
+                      method="POST"
+                      class="dropzone"
+                >
+                    {{ csrf_field() }}
+                </form>
+            @endif
         </div>
     </div>
 
-    <hr>
-
-    <form id="addPhotosForm"
-          action="{{ route('store_photo_path', [$flyer->zip, $flyer->street]) }}"
-          method="POST"
-          class="dropzone"
-    >
-        {{ csrf_field() }}
-    </form>
 @stop
 
 @section('styles')
