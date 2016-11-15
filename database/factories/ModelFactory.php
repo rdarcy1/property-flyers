@@ -27,6 +27,7 @@ $factory->define(App\Flyer::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
+        'user_id' => factory('App\User')->create()->id,
         'street' => $faker->streetAddress,
         'city' => $faker->city,
         'zip' => $faker->postcode,

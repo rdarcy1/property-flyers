@@ -5,6 +5,9 @@
     <title>Project Flyer</title>
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/libs.css">
+
+    @yield('styles')
+
 </head>
 <body>
 
@@ -27,6 +30,13 @@
                 <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
                 <li><a href="#">Link</a></li>
             </ul>
+
+            @if (Auth::check())
+                <p class="navbar-text navbar-right">
+                    Hello, {{ Auth::user()->name }}.
+                </p>
+            @endif
+
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
@@ -35,6 +45,7 @@
     @yield('content')
 </div>
 
+@yield('scripts.footer')
 <script src="/js/libs.js"></script>
 
 @include('flash')
