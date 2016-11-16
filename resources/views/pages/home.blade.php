@@ -2,10 +2,14 @@
 
 @section('content')
 
-<div class="jumbotron">
-	<h1>Project Flyer</h1>
+    <div class="jumbotron">
+        <h1>Project Flyer</h1>
 
-	<a class="btn btn-primary" href="flyers/create">Create a Flyer</a>
-</div>
+        @if ($signedIn)
+            <a class="btn btn-primary" href="flyers/create">Create a Flyer</a>
+        @else
+            <a class="btn btn-primary" href="register">Create an account</a>
+        @endif
+    </div>
 
 @stop
