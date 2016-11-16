@@ -5769,13 +5769,21 @@ button.close {
 .form-control {
   height: 39px; }
 
+.gallery__image {
+  margin-bottom: 1em; }
+
+.delete-thumbnail {
+  position: absolute; }
+
+.delete-thumbnail button[type=submit] {
+  background-color: transparent;
+  color: black;
+  border: none; }
+
 .navbar-default {
   padding-left: 75px; }
 
 img {
   max-width: 100%; }
-
-.gallery__image {
-  margin-bottom: 1em; }
 
 /*# sourceMappingURL=app.css.map */

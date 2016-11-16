@@ -1,0 +1,13 @@
+.gallery__image {
+  margin-bottom: 1em;
+}
+
+.delete-thumbnail {
+  position: absolute;
+}
+
+.delete-thumbnail button[type=submit] {
+  background-color: rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 255);
+  border: none;
+}

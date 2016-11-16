@@ -19,7 +19,18 @@
                 <div class="row">
                     @foreach ($photoSet as $photo)
                         <div class="col-md-3 gallery__image">
-                            <img src="/{{ $photo->thumbnail_path }}">
+
+                            <!-- Delete image form -->
+                            <form method="post" action="/photos/{{ $photo->id }}" class="delete-thumbnail hover-fade">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" title="Delete image">X</button>
+                            </form>
+
+                            <!-- Thumbnails -->
+                            <a href="/{{ $photo->path }}" data-lity>
+                                <img src="/{{ $photo->thumbnail_path }}">
+                            </a>
                         </div>
                     @endforeach
                 </div>

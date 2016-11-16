@@ -31,4 +31,14 @@ class User extends Authenticatable
     {
         return $this->id == $relation->user_id;
     }
+
+    public function flyers()
+    {
+        return $this->hasMany(Flyer::class);
+    }
+
+    public function publish(Flyer $flyer)
+    {
+        $this->flyers()->save($flyer);
+    }
 }

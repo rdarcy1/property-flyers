@@ -3,8 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\UploadedFile;
-
 use Image;
 
 class Photo extends Model
@@ -13,52 +11,17 @@ class Photo extends Model
 
     protected $fillable = ['name', 'path', 'thumbnail_path'];
 
-    protected $file;
-
-    protected static function boot()
-    {
-        static::creating(function ($photo) {
-            return $photo->upload();
-        });
-    }
-
     public function flyer()
     {
         return $this->belongsTo('App\Flyer');
     }
 
-    public static function fromFile(UploadedFile $file)
+    public function setNameAttribute($name)
     {
-        $photo = new static;
+        $this->attributes['name'] = $name;
 
-        $photo->file = $file;
-
-        return $photo->fill([
-            'name' => $photo->fileName(),
-            'path' => $photo->filePath(),
-            'thumbnail_path' => $photo->thumbnailPath()
-        ]);
-    }
-
-    public function fileName()
-    {
-        $name = sha1(
-            time() . $this->file->getClientOriginalName()
-        );
-
-        $extension = $this->file->getClientOriginalExtension();
-
-        return $name . '.' . $extension;
-    }
-
-    public function filePath()
-    {
-        return $this->baseDir() . '/' . $this->fileName();
-    }
-
-    public function thumbnailPath()
-    {
-        return $this->baseDir() . '/tn-' . $this->fileName();
+        $this->path = $this->baseDir() .'/'. $name;
+        $this->thumbnail_path = $this->baseDir() .'/tn-'. $name;
     }
 
     public function baseDir()
@@ -66,19 +29,13 @@ class Photo extends Model
         return 'flyer-assets/photos';
     }
 
-    public function upload()
+    public function delete()
     {
-        $this->file->move($this->baseDir(), $this->name);
+        \File::delete([
+            $this->path,
+            $this->thumbnail_path
+        ]);
 
-        $this->makeThumbnail();
-
-        return $this;
-    }
-
-    protected function makeThumbnail()
-    {
-        Image::make($this->filePath())
-            ->fit(200)
-            ->save($this->thumbnailPath());
+        parent::delete();
     }
 }
