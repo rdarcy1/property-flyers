@@ -12,8 +12,10 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\User::class, function () {
     static $password;
+
+    $faker = Faker\Factory::create('en_GB');
 
     return [
         'name' => $faker->name,
@@ -23,17 +25,18 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Flyer::class, function (Faker\Generator $faker) {
-    static $password;
+$factory->define(App\Flyer::class, function () {
+
+    $faker = Faker\Factory::create('en_GB');
 
     return [
         'user_id' => factory('App\User')->create()->id,
         'street' => $faker->streetAddress,
         'city' => $faker->city,
         'zip' => $faker->postcode,
-        'state' => $faker->state,
+        'state' => $faker->county,
         'country' => $faker->country,
         'price' => $faker->numberBetween(10000, 5000000),
-        'description' => $faker->paragraph
+        'description' => $faker->paragraphs(4, true)
     ];
 });

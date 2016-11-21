@@ -25,32 +25,36 @@
         <hr>
 
         <h2>Recent Flyers</h2>
-        @foreach ($recentFlyers as $flyer)
-            @php ($flyer_url = '/' . flyer_path($flyer) )
+        @if (sizeof($recentFlyers))
+            @foreach ($recentFlyers as $flyer)
+                @php ($flyer_url = '/' . flyer_path($flyer) )
 
-            <a href="{{ $flyer_url }}">
-                <div class="recent-flyer-row">
-                    <div class="col-md-3">
+                <a href="{{ $flyer_url }}">
+                    <div class="recent-flyer-row">
+                        <div class="col-md-3">
 
-                        @if ($photo = $flyer->photos->first())
+                            @if ($photo = $flyer->photos->first())
 
-                            <img src="/{{ $photo->thumbnail_path }}" class="img-rounded">
-                        @endif
+                                <img src="/{{ $photo->thumbnail_path }}" class="img-rounded">
+                            @endif
+                        </div>
+
+                        <div class="col-md-9">
+                            <h4>{{ $flyer->street }}</h4>
+                            <h3>{{ $flyer->city }}</h3>
+                        </div>
+
                     </div>
+                </a>
 
-                    <div class="col-md-9">
-                        <h4>{{ $flyer->street }}</h4>
-                        <h3>{{ $flyer->city }}</h3>
-                    </div>
+                @unless ($loop->last)
+                    <hr>
+                @endunless
+            @endforeach
 
-                </div>
-            </a>
-
-            @unless ($loop->last)
-                <hr>
-            @endunless
-        @endforeach
-
+        @else
+            <p>No recent flyers to show.</p>
+        @endif
 
     </div>
 
