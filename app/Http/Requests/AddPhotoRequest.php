@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Flyer;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class AddPhotoRequest extends FormRequest
@@ -15,6 +16,10 @@ class AddPhotoRequest extends FormRequest
      */
     public function authorize()
     {
+        if (App::environment('demo')) {
+            return true;
+        }
+
         return Flyer::where([
             'zip' => $this->zip,
             'street' => $this->street,

@@ -37,7 +37,7 @@
                 </div>
             @endforeach
 
-            @if ($user && $user->owns($flyer))
+            @if (($user && $user->owns($flyer)) || \App::environment('demo'))
                 <hr>
                 <form id="addPhotosForm"
                       action="{{ route('store_photo_path', [$flyer->zip, $flyer->street]) }}"
