@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col-md-4">
             <h1>{{ $flyer->street }}</h1>
+            <h3>{{ $flyer->city }}</h3>
             <h2>{{ $flyer->price }}</h2>
 
             <hr>

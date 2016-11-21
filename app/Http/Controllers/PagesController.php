@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Flyer;
 
 class PagesController extends Controller
 {
     public function home()
     {
-        return view('pages.home');
+        $recentFlyers = Flyer::orderBy('created_at')->limit(10)->get();
+
+        return view('pages.home', compact('recentFlyers'));
     }
 }

@@ -5769,6 +5769,44 @@ button.close {
 .form-control {
   height: 39px; }
 
+img {
+  max-width: 100%; }
+
+hr {
+  width: 50%; }
+
+p.front-page {
+  font-size: 16px; }
+
+.btn-primary {
+  width: 150px;
+  margin: 1px 20px; }
+
+.navbar-default {
+  padding-left: 75px;
+  padding-right: 75px; }
+
+.recent-heading {
+  margin-top: 50px; }
+
+.recent-flyer-row {
+  display: -webkit-box;
+  display: flex;
+  height: 200px;
+  -webkit-box-align: center;
+  align-items: center;
+  text-align: left; }
+
+.text-center {
+  text-align: center; }
+
+.no-list-style {
+  list-style: none;
+  padding: 0; }
+
+hr.short {
+  width: 25%; }
+
 .gallery__image {
   margin-bottom: 1em; }
 
@@ -5779,11 +5817,5 @@ button.close {
   background-color: transparent;
   color: black;
   border: none; }
-
-.navbar-default {
-  padding-left: 75px; }
-
-img {
-  max-width: 100%; }
 
 /*# sourceMappingURL=app.css.map */

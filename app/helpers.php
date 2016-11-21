@@ -1,5 +1,7 @@
 <?php
 
+use App\Flyer;
+
 function flash($title = null, $message = null)
 {
     $flash = app('App\Http\Flash');

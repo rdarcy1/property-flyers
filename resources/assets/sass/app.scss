@@ -7,13 +7,8 @@
 
 @import "partials/forms.scss";
 
+@import "layout";
+
+@import "helpers";
+
 @import "image_gallery";
-
-.navbar-default {
-  padding-left: 75px;
-}
-
-img {
-  max-width: 100%;
-}
-

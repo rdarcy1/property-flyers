@@ -21,4 +21,3 @@ Auth::routes();
 
 Route::delete('photos/{id}', 'PhotosController@destroy');
 
-Route::get('/home', 'HomeController@index');
