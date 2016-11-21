@@ -19,6 +19,7 @@ class Flyer extends Model
 
     public static function locatedAt($zip, $street)
     {
+        $zip = str_replace('-', ' ', $zip);
         $street = str_replace('-', ' ', $street);
 
         return static::where(compact('zip', 'street'))->firstOrFail();
@@ -26,7 +27,7 @@ class Flyer extends Model
 
     public function getPriceAttribute($price)
     {
-        return '$' . number_format($price);
+        return '£' . number_format($price);
     }
 
     public function addPhoto(Photo $photo)

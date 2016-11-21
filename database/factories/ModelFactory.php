@@ -36,7 +36,7 @@ $factory->define(App\Flyer::class, function () {
         'zip' => $faker->postcode,
         'state' => $faker->county,
         'country' => $faker->country,
-        'price' => $faker->numberBetween(10000, 5000000),
+        'price' => $faker->numberBetween(10, 500) * 5000,
         'description' => $faker->paragraphs(4, true)
     ];
 });
