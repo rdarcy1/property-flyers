@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Flyer;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Auth;
 
 class AddPhotoRequest extends FormRequest
 {

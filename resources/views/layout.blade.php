@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
     <title>Property Flyers</title>
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/libs.css">
+    <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
 
     @yield('styles')
 
@@ -29,6 +32,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+                <li>
+                    <a href="https://github.com/rdarcy1/property-flyers" target="_blank" title="View on GitHub">
+                        <span class="github-link fa fa-github"></span>
+                    </a>
+                </li>
                 {{--<li><a href="/">Home</a></li>--}}
                 {{--<li><a href="/">Home</a></li>--}}
             </ul>

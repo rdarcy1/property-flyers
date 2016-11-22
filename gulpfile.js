@@ -18,6 +18,7 @@ elixir(mix => {
     .scripts([
         'libs/sweetalert-dev.js',
         'libs/lity.js',
+        'libs/bootstrap.min.js'
     ], './public/js/libs.js')
     .scripts([
         'ui.js'
